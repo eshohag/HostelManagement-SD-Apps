@@ -1,8 +1,9 @@
-﻿using System.Data.Entity;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using HostelManagement_SD_Apps.Models.CoreModel;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace HostelManagement_SD_Apps.Models
 {
@@ -21,7 +22,7 @@ namespace HostelManagement_SD_Apps.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("HostelManagementDB", throwIfV1Schema: false)
         {
         }
 
@@ -29,5 +30,12 @@ namespace HostelManagement_SD_Apps.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<CoreModel.Student> Students { get; set; }
+        public DbSet<Department> Departments { get; set; }
+
+        public DbSet<CoreModel.BloodGroup> BloodGroups { get; set; }
+
+        public DbSet<CoreModel.Semester> Semesters { get; set; }
     }
 }
